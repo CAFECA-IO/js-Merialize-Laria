@@ -1,6 +1,6 @@
 {
-  "name": "js-merialize-laria",
-  "version": "1.0.0",
+  "name": "merialize",
+  "version": "0.1.0",
   "description": "Pure Javascript Serialized Merkle-Tree Library",
   "main": "index.js",
   "scripts": {
@@ -19,8 +19,8 @@
     "type": "git",
     "url": "git+https://github.com/CAFECA-IO/js-Merialize-Laria.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "CAFECA",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/CAFECA-IO/js-Merialize-Laria/issues"
   },
@@ -41,5 +41,19 @@
     "eslint": "^8.22.0",
     "prettier": "^2.7.1",
     "typescript": "^4.8.2"
-  }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "merkle",
+    "tree",
+    "hash",
+    "algorithm",
+    "crypto",
+    "proof"
+  ],
+  "files": [
+    "dist"
+  ]
 }
