@@ -22,7 +22,7 @@ class MerkleTree {
    * @param hashFunction hash function which is used by user
    */
   constructor(groupSize: number, nodeElements: string[], hashFunction = new keccak('keccak256')) {
-    const hashLeftAndRight = hashFunction;
+    // const hashLeftAndRight = hashFunction;
     this.totalLeavesCounts = 0;
     this.groupSize = 0;
     this.salt = 0;

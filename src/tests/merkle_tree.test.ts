@@ -132,6 +132,7 @@ describe('Check proofIndexNode output', () => {
 describe('Check doPreOrder output', () => {
   test('test doPreOrder', () => {
     const mktree = new MerkleTree(3, ['1', '2', '3'], new keccak('keccak256'));
+    const mktree_test = new MerkleTree(3, ['1', '2', '3']);
     const result = mktree.doPreOrder(['1', '2', '3'], 0);
     expect(result).toStrictEqual([]);
   });
