@@ -71,7 +71,7 @@ class MerkleTree {
     return 'nodeStorage.get(0)';
   }
   // remove data
-  removeNodes(value: string): boolean {
+  removeNode(value: string): boolean {
     // if (nodeElements contains value) {
     //     // get original element and add sort
     //     nodeElements remove value

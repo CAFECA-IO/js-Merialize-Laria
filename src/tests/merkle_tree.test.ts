@@ -39,58 +39,105 @@ describe('Check getNodeHash output', () => {
   });
 });
 
-//   getIndex(targetHashValue): string {
-//     // find targetValue in nodeStorage
-//     return 'index';
-//   }
-//   getNodeHash(index): string {
-//     return 'nodeStorage[index]';
-//   }
-//   getRoot(): string {
-//     // get root hash (index = 0)
-//     return 'nodeStorage.get(0)';
-//   }
-//   // remove data
-//   removeNodes(value: number): boolean {
-//     // if (nodeElements contains value) {
-//     //     // get original element and add sort
-//     //     nodeElements remove value
-//     //     this.consistentHashRing = new ConsistentHashing(this.groupSize, nodeElements);
+// check insertNodes output
+describe('Check getRoot output', () => {
+  test('test getRoot', () => {
+    const mktree = new MerkleTree(3, ['1', '2', '3'], new keccak('keccak256'));
+    mktree.getRoot();
+  });
+});
 
-//     //     // rebuild nodeStorage
-//     //     groupSize = this.consistentHashRing.getGroupSizeAndSort()[0];
-//     //     sort = this.consistentHashRing.getGroupSizeAndSort()[1];
+// check remove data output
+describe('Check removeNodes output', () => {
+  test('test removeNodes', () => {
+    const mktree = new MerkleTree(3, ['1', '2', '3'], new keccak('keccak256'));
+    const removeStatus = mktree.removeNode('1');
+    expect(removeStatus).toStrictEqual(true);
+  });
+});
 
-//     //     // rebuild merkle tree
-//     //     buildMerkleTree(groupSize, nodeElements, sort);
+// check getFullEvidence output
+describe('Check getFullEvidence output', () => {
+  test('test getFullEvidence', () => {
+    const mktree = new MerkleTree(3, ['1', '2', '3'], new keccak('keccak256'));
+    const evidence = mktree.getFullEvidence();
+    expect(evidence).toStrictEqual(Buffer.from([1, 2, 3]));
+  });
+});
 
-//     //     // store nodeStorage size to totalLeavesCount
-//     //     totalLeavesCount = count nodeStorage nodes ;
+// check getPartialEvidence output
+describe('Check getPartialEvidence output', () => {
+  test('test getPartialEvidence', () => {
+    const mktree = new MerkleTree(3, ['1', '2', '3'], new keccak('keccak256'));
+    const evidence = mktree.getPartialEvidence();
+    expect(evidence).toStrictEqual(Buffer.from([1, 2, 3]));
+  });
+});
 
-//     return true;
+// check proofIndexNode output
+describe('Check proofIndexNode output', () => {
+  test('test proofIndexNode', () => {
+    const mktree = new MerkleTree(3, ['1', '2', '3'], new keccak('keccak256'));
+    const status = mktree.proofIndexNode(1);
+    expect(status).toStrictEqual(true);
+  });
+});
 
-//     // } else {
-//     //     return false;
-//     // }
-//   }
-//   getFullEvidence(): Buffer {
-//     // let nodesWithRlp = []
-//     // for loop 1 to nodeStorage.length:
-//     //     // if it's not 0 value
-//     //     if (nodeStorage[i] !== 80):
-//     //         nodesWithRlp.add(rlpConverter(nodeStorage[i])+nodeStorage[i]);
-//     //     else:
-//     //         nodesWithRlp.add(80);
+// check getPartialEvidenceByData output
+describe('Check getPartialEvidenceByData output', () => {
+  test('test getPartialEvidenceByData', () => {
+    const mktree = new MerkleTree(3, ['1', '2', '3'], new keccak('keccak256'));
+    const evidence = mktree.getPartialEvidenceByData('1', ['1', '2', '3']);
+    expect(evidence).toStrictEqual([]);
+  });
+});
 
-//     // let result = [];
-//     // add rlpcode to node
-//     // return  Buffer.from([groupSize , nodeStorage[0] , sort] + doPreOrder(nodesWithRlp , 0));
-//     return Buffer.from([1, 2, 3]);
-//   }
-//   getPartialEvidence() {
-//     // return 32 bytes (Buffer.from([groupSize , nodeStorage[0] , sort]));
-//     return Buffer.from([1, 2, 3]);
-//   }
+// check getPartialEvidenceByData output
+describe('Check getPartialEvidenceByHash output', () => {
+  test('test getPartialEvidenceByHash', () => {
+    const mktree = new MerkleTree(3, ['1', '2', '3'], new keccak('keccak256'));
+    const evidence = mktree.getPartialEvidenceByHash('1', ['1', '2', '3']);
+    expect(evidence).toStrictEqual([]);
+  });
+});
+
+// check getPartialEvidenceByData output
+describe('Check verifyNodeByData output', () => {
+  test('test verifyNodeByData', () => {
+    const mktree = new MerkleTree(3, ['1', '2', '3'], new keccak('keccak256'));
+    const status = mktree.verifyNodeByData('1', ['1', '2', '3']);
+    expect(status).toStrictEqual(true);
+  });
+});
+
+// check getPartialEvidenceByData output
+describe('Check verifyNodeByHash output', () => {
+  test('test verifyNodeByHash', () => {
+    const mktree = new MerkleTree(3, ['1', '2', '3'], new keccak('keccak256'));
+    const status = mktree.verifyNodeByHash('1', ['1', '2', '3']);
+    expect(status).toStrictEqual(true);
+  });
+});
+
+// check getPartialEvidenceByData output
+describe('Check proofIndexNode output', () => {
+  test('test proofIndexNode', () => {
+    const mktree = new MerkleTree(3, ['1', '2', '3'], new keccak('keccak256'));
+    const status = mktree.proofIndexNode(1);
+    expect(status).toStrictEqual(true);
+  });
+});
+
+// check getPartialEvidenceByData output
+describe('Check doPreOrder output', () => {
+  test('test doPreOrder', () => {
+    const mktree = new MerkleTree(3, ['1', '2', '3'], new keccak('keccak256'));
+    const result = mktree.doPreOrder(['1', '2', '3'], 0);
+    expect(result).toStrictEqual([]);
+  });
+});
+
+// need to put in output evidence
 //   doPreOrder(elements, rootIndex): string[] {
 //     const items = elements;
 //     const result = [];
@@ -106,48 +153,7 @@ describe('Check getNodeHash output', () => {
 //     // preOrder((2 * index)+1);
 //     // preOrder((2 * index)+2);
 //   }
-//   proofIndexNode(index): boolean {
-//     // for loop to parents until reach the root:
-//     //     do Hash(index of node's hash ,siblings hash);
-//     // if roothash!= previous root hash:
-//     //     return false;
-//     // else:
-//     return true;
-//   }
-//   getPartialEvidenceByData(data: string | Buffer, fullTree: string[] | Buffer[]): string[] {
-//     // get sort (hashConfig)
-//     // const sort = get sort from fullTree;
-//     // // get index
-//     // const index = this.consistentHash(data);
-//     // // get hash
-//     // const hash = this.hashMerkle(data, sort);
 
-//     // const result = getPartialEvidenceByHash(hash, fullTree);
-
-//     return [];
-//   }
-//   getPartialEvidenceByHash(hash: string | Buffer, fullTree: string[] | Buffer[]): string[] {
-//     // result = [];
-//     const result = [];
-
-//     // remove groupSize and sort from fullTree;
-
-//     // // find data in last level
-//     // if hash not in fullTree :
-//     //     return -1;
-
-//     // transfer fullTree from preorder to original format;
-
-//     // // get evidence element from tree
-//     // for loop siblings index to root index:
-//     //     check fullTree[index + 2^n-1] is left child or right child:
-//     //     if it's left child:
-//     //        result.unshift(fullTree[index], fullTree[index+1])
-//     //     else:
-//     //        result.unshift(fullTree[index-1], fullTree[index])
-
-//     return result;
-//   }
 //   verifyNodeByData(data: string | Buffer, hashList: string[] | Buffer[]): boolean {
 //     // let nodeHash = this.hashMerkle(data);
 //     // const result = verifyNodeByHash( nodeHash , hashList );
