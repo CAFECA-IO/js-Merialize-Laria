@@ -11,27 +11,34 @@ describe('Check buildTree output', () => {
   });
 });
 
-// buildMerkleTree(groupSize, elements, sort) {
-//     this.groupSize = groupSize;
-//   }
+// check insertNodes output
+describe('Check insertNodes output', () => {
+  test('test insertNodes', () => {
+    const mktree = new MerkleTree(3, ['1', '2', '3'], new keccak('keccak256'));
+    mktree.insertNodes(Buffer.from([1, 2, 3]));
+  });
+});
 
-//   getDataBlockHash(groupSize, elements): string[] {
-//     return [];
-//   }
+// check insertNodes output
+describe('Check getIndex output', () => {
+  test('test getIndex', () => {
+    const mktree = new MerkleTree(3, ['1', '2', '3'], new keccak('keccak256'));
+    // Need to add result
+    mktree.getIndex('2');
+  });
+});
 
-//   insertNodes(value: Buffer[]) {
+// check insertNodes output
+describe('Check getNodeHash output', () => {
+  test('test getNodeHash', () => {
+    const mktree = new MerkleTree(3, ['1', '2', '3'], new keccak('keccak256'));
+    // Need to add result
+    expect(mktree.getNodeHash('2')).toStrictEqual(
+      new keccak('keccak256').update('2').digest('hex')
+    );
+  });
+});
 
-//     // get original element and add sort
-//     // nodeElements add value
-//     // this.consistentHashRing = new ConsistentHashing(this.groupSize, nodeElements);
-//     // // rebuild nodeStorage
-//     this.groupSize = this.consistentHashRing.getGroupSizeAndSalt()[0];
-//     this.sort = this.consistentHashRing.getGroupSizeAndSalt()[1];
-//     // // rebuild merkle tree
-//     // buildMerkleTree(groupSize, nodeElements, sort);
-//     // // store nodeStorage size to totalLeavesCount
-//     // totalLeavesCount = count nodeStorage nodes
-//   }
 //   getIndex(targetHashValue): string {
 //     // find targetValue in nodeStorage
 //     return 'index';

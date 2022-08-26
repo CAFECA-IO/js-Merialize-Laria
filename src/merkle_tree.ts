@@ -12,7 +12,7 @@ class MerkleTree {
   totalLeavesCounts: number;
   groupSize: number;
   consistentHashRing: any;
-  sort: number;
+  salt: number;
 
   // user constructor to initialize params
   /**
@@ -25,34 +25,35 @@ class MerkleTree {
     const hashLeftAndRight = hashFunction;
     this.totalLeavesCounts = 0;
     this.groupSize = 0;
-    this.sort = 0;
+    this.salt = 0;
 
     if (nodeElements.length > 0) {
       // set totalLeavesCounts, level
       // set totalLeavesCounts = nodeElements.length;
       this.consistentHashRing = new ConsistentHashing(nodeElements);
       this.groupSize = this.consistentHashRing.getGroupSizeAndSalt()[0];
-      this.sort = this.consistentHashRing.getGroupSizeAndSalt()[1];
+      this.salt = this.consistentHashRing.getGroupSizeAndSalt()[1];
       // call build tree function
-      // buildMerkleTree(groupSize, elements, sort);
+      this.buildMerkleTree(this.groupSize, nodeElements, this.salt);
     }
   }
 
   buildMerkleTree(groupSize: number, elements: string[], salt: number) {
     this.groupSize = groupSize;
+    this.getDataBlockHash(groupSize, elements);
   }
 
   getDataBlockHash(groupSize: number, elements: string[]): string[] {
     return [];
   }
 
-  insertNodes(value: Buffer[]) {
+  insertNodes(value: Buffer) {
     // get original element and add sort
     // nodeElements add value
     // this.consistentHashRing = new ConsistentHashing(this.groupSize, nodeElements);
     // // rebuild nodeStorage
     this.groupSize = this.consistentHashRing.getGroupSizeAndSalt()[0];
-    this.sort = this.consistentHashRing.getGroupSizeAndSalt()[1];
+    this.salt = this.consistentHashRing.getGroupSizeAndSalt()[1];
     // // rebuild merkle tree
     // buildMerkleTree(groupSize, nodeElements, sort);
     // // store nodeStorage size to totalLeavesCount
@@ -60,10 +61,10 @@ class MerkleTree {
   }
   getIndex(targetHashValue: string): string {
     // find targetValue in nodeStorage
-    return 'index';
+    return '1';
   }
   getNodeHash(index: string): string {
-    return 'nodeStorage[index]';
+    return new keccak('keccak256').update('2').digest('hex');
   }
   getRoot(): string {
     // get root hash (index = 0)

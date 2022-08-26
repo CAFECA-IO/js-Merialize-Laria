@@ -6,7 +6,7 @@ describe('Check hashCalculator output', () => {
   test('test hash(two hash) to hex string', () => {
     const consistentHashing = new ConsistentHashing(['1', '2', '3']);
     const result = consistentHashing.getGroupSizeAndSalt();
-    expect(result[0]).toStrictEqual(32);
+    expect(result[0]).toStrictEqual(16);
     expect(result[1]).toStrictEqual(0);
   });
 });

@@ -73,7 +73,7 @@ class ConsistentHashing {
     // this.salt = count;
     // this.groupSize = groupSize;
     this.salt = 0;
-    this.groupSize = 32;
+    this.groupSize = 16;
   }
 
   consistentHash(element: string) {
